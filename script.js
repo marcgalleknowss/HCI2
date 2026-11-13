@@ -339,7 +339,7 @@
     html += `</div></div>`;
 
     if (stepCount > 0) {
-      html += `<button onclick="goBack()" style="background:none;border:none;color:var(--muted);font-size:0.8rem;cursor:pointer;padding:4px 0;font-family:inherit;">← Back</button>`;
+      html += `<button onclick="goBack()" style="background:none;border:none;color:var(--muted);font-size:0.8rem;cursor:pointer;padding:4px 0;font-family:inherit;">Back</button>`;
     }
 
     body.innerHTML = html;
@@ -382,7 +382,6 @@
 
     // Summary
     html += `<div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:20px;display:flex;align-items:center;gap:14px;">
-      <div style="font-size:2rem;">${likely.length > 0 ? '🎓' : '📋'}</div>
       <div>
         <div style="font-weight:600;font-size:1rem;color:var(--text);">${likely.length} scholarship${likely.length !== 1 ? 's' : ''} you may qualify for</div>
         <div style="font-size:0.82rem;color:var(--muted);margin-top:2px;">${partial.length} additional scholarship${partial.length !== 1 ? 's' : ''} worth exploring</div>
@@ -391,7 +390,7 @@
 
     // Likely
     if (likely.length > 0) {
-      html += `<p style="font-size:0.72rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--success);margin-bottom:10px;">✅ Likely qualify</p>`;
+      html += `<p style="font-size:0.72rem;font-weight:600;color:var(--success);margin-bottom:10px;">Likely qualify</p>`;
       likely.forEach(r => {
         html += resultCard(r, 'eligible', '#2A6B3C', 'rgba(42,107,60,0.06)', 'rgba(42,107,60,0.35)');
       });
@@ -399,7 +398,7 @@
 
     // Partial
     if (partial.length > 0) {
-      html += `<p style="font-size:0.72rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--warn);margin-bottom:10px;margin-top:18px;">⚠️ Worth exploring</p>`;
+      html += `<p style="font-size:0.72rem;font-weight:600;color:var(--warn);margin-bottom:10px;margin-top:18px;">Worth exploring</p>`;
       partial.forEach(r => {
         html += resultCard(r, 'partial', '#8B5E0A', 'rgba(139,94,10,0.05)', 'rgba(139,94,10,0.3)');
       });
@@ -410,7 +409,7 @@
     }
 
     html += `<div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap;">
-      <button onclick="restartChecker()" style="background:none;border:1.5px solid var(--border);border-radius:8px;padding:9px 16px;font-size:0.82rem;cursor:pointer;font-family:inherit;color:var(--muted);">← Start over</button>
+      <button onclick="restartChecker()" style="background:none;border:1.5px solid var(--border);border-radius:8px;padding:9px 16px;font-size:0.82rem;cursor:pointer;font-family:inherit;color:var(--muted);">Start over</button>
       <button onclick="closeModal()" style="background:var(--maroon);color:white;border:none;border-radius:8px;padding:9px 18px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:inherit;flex:1;">Done</button>
     </div>`;
 
@@ -1083,7 +1082,7 @@
     html += `</div></div>`;
 
     if (focusStepCount > 0) {
-      html += `<button onclick="goBackFocus()" style="background:none;border:none;color:var(--muted);font-size:0.8rem;cursor:pointer;padding:4px 0;font-family:inherit;">← Back</button>`;
+      html += `<button onclick="goBackFocus()" style="background:none;border:none;color:var(--muted);font-size:0.8rem;cursor:pointer;padding:4px 0;font-family:inherit;">Back</button>`;
     }
 
     body.innerHTML = html;
@@ -1112,9 +1111,9 @@
   }
 
   const FOCUS_STATUS_STYLE = {
-    eligible: { label: '✅ Likely qualify', textColor: '#2A6B3C', bg: 'rgba(42,107,60,0.06)', border: 'rgba(42,107,60,0.35)' },
-    partial: { label: '⚠️ Worth exploring', textColor: '#8B5E0A', bg: 'rgba(139,94,10,0.05)', border: 'rgba(139,94,10,0.3)' },
-    ineligible: { label: '✕ Likely not eligible', textColor: 'var(--red)', bg: 'rgba(139,26,26,0.05)', border: 'rgba(139,26,26,0.3)' }
+    eligible: { label: 'Likely qualify', textColor: '#2A6B3C', bg: 'rgba(42,107,60,0.06)', border: 'rgba(42,107,60,0.35)' },
+    partial: { label: 'Worth exploring', textColor: '#8B5E0A', bg: 'rgba(139,94,10,0.05)', border: 'rgba(139,94,10,0.3)' },
+    ineligible: { label: 'Likely not eligible', textColor: 'var(--red)', bg: 'rgba(139,26,26,0.05)', border: 'rgba(139,26,26,0.3)' }
   };
 
   function renderFocusResult() {
@@ -1129,21 +1128,20 @@
 
     let html = '';
     html += `<div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:20px;display:flex;align-items:center;gap:14px;">
-      <div style="font-size:2rem;">${result.status === 'eligible' ? '🎓' : result.status === 'partial' ? '📋' : '✕'}</div>
       <div>
         <div style="font-weight:600;font-size:1rem;color:var(--text);">${focusScholarship}</div>
         <div style="font-size:0.82rem;color:var(--muted);margin-top:2px;">Based on your answers to the questions above</div>
       </div>
     </div>`;
 
-    html += `<p style="font-size:0.72rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:${style.textColor};margin-bottom:10px;">${style.label}</p>`;
+    html += `<p style="font-size:0.72rem;font-weight:600;color:${style.textColor};margin-bottom:10px;">${style.label}</p>`;
     html += `<div style="border:1px solid ${style.border};border-radius:10px;padding:14px 16px;margin-bottom:10px;background:${style.bg};">
       <div style="font-size:0.85rem;color:var(--muted);line-height:1.6;margin-bottom:8px;">${result.reason}</div>
       <div style="font-size:0.78rem;color:${style.textColor};font-style:italic;">Next step: ${result.next}</div>
     </div>`;
 
     html += `<div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap;">
-      <button onclick="restartChecker()" style="background:none;border:1.5px solid var(--border);border-radius:8px;padding:9px 16px;font-size:0.82rem;cursor:pointer;font-family:inherit;color:var(--muted);">← Start over</button>`;
+      <button onclick="restartChecker()" style="background:none;border:1.5px solid var(--border);border-radius:8px;padding:9px 16px;font-size:0.82rem;cursor:pointer;font-family:inherit;color:var(--muted);">Start over</button>`;
     if (result.status !== 'ineligible') {
       html += `<button onclick="applyNow('${focusScholarship}')" style="background:var(--maroon);color:white;border:none;border-radius:8px;padding:9px 18px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:inherit;flex:1;">Apply Now</button>`;
     } else {
@@ -1206,7 +1204,7 @@
       if (sel.options[i].value === name || sel.options[i].text === name) { sel.selectedIndex = i; break; }
     }
     showPage('apply');
-    showToast('📋 ' + name + ' selected');
+    showToast(name + ' selected');
   }
 
   function showToast(msg) {
@@ -1218,7 +1216,7 @@
 
   function submitApplication() {
     closeModal();
-    showToast('✅ Application submitted! OSJPAR will contact you within 30 days.');
+    showToast('Application submitted! OSJPAR will contact you within 30 days.');
     setTimeout(() => showPage('home'), 500);
   }
 
